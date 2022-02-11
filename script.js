@@ -18,5 +18,5 @@ const arrayFunction = () => {
     newLi.innerHTML = createTask.value;
     console.log("To do " + createTask.value);
 }
-
+ 
 
