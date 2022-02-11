@@ -20,4 +20,4 @@ fetch(baseUrl, {
     headers: myHeaders,
     body: JSON.stringify(data)
 });
-console.log(data)
+console.log(data) 
