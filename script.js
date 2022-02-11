@@ -15,7 +15,7 @@ const showData = () => {
     }, 2000);
 }
 showData();
-
+ 
 
 // Functie voor de post naar de DOM
 
