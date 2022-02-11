@@ -1,23 +1,23 @@
-// Variabelen
+// // Variabelen
 const createTask = document.getElementById("add-text");
 const taskForm = document.getElementById("add-task"); 
-const toDoList = document.getElementById("todo-list");
+
+// Laad de data uit de GET functie en laat het zien aan de DOM
+const showData = () => {
+    setTimeout(() => {
+    const toDoList = document.getElementById("todo-list");
+        let output = '';
+        const data = await res.json();
+    data.forEach((task) => {
+      output += `<li>${task.description}</li>`;
+    });
+    toDoList.innerHTML = output;
+    }, 2000);
+}
+showData();
+
 
 // Functie voor de post naar de DOM
-taskForm.addEventListener("submit", (data) => {
-    data.preventDefault();
-    arrayFunction();
-});
 
-// Stuur de ingevulde data naar de DOM
-const arrayFunction = () => {
-    const getList = document.getElementById("todo-list");
-    const newLi = document.createElement("li");
-
-    getList.appendChild(newLi);
-    newLi.innerHTML = createTask.value;
-    console.log("To do " + createTask.value);
-}
- 
 
  

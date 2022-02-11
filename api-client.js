@@ -3,21 +3,19 @@ const baseUrl = "HTTP://localhost:3000/";
 let myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
+
 // GET functie
-const LoadData = async () => {
-  const res =  fetch(baseUrl, {
-        method: 'GET',
-        headers: myHeaders
+const loadData = async () => {
+  const res = await fetch(baseUrl, {
+    method: 'GET',
+    headers: myHeaders
   });
-    console.log(res);
+  const data = await res.json();
+  console.log(data);
 }
-LoadData();
+loadData();
 
 // POST functie
-const data = createTask.value;
-fetch(baseUrl, {
-    method: "POST",
-    headers: myHeaders,
-    body: JSON.stringify(data)
-});
-console.log(data) 
+// const postData = async () => {
+
+// }
