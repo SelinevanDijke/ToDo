@@ -3,9 +3,7 @@ const baseUrl = "HTTP://localhost:3000/";
 let myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
-const createTask = document.getElementById("add-text");
-const taskForm = document.getElementById("add-task"); 
-
+// const taskForm = document.getElementById("add-task"); 
 
 // GET functie
 const loadData = async () => {
@@ -32,27 +30,25 @@ const loadData = async () => {
 }
 loadData();
 
-// Laad de tekst uit de form
-const postData = async () => {
-   fetch(baseUrl, {
-      method: "POST",
-      body: JSON.stringify(),
-      headers: myHeaders
-    })
-}
-
-taskForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  console.log(createTask.value);
-  postData();
-});
-
-
 // POST functie
+const postData = async (toDo) => {
+  const obj = {description: taskText.value, done: false}
+  fetch(baseUrl, {
+    method: "POST",
+    body: JSON.stringify(obj),
+    headers: myHeaders,
+  })
+};
 
 
 
-// const data = {description: "Koop kwark", done: false};
+
+
+
+
+
+
+// const data = {description: "Koop melk", done: false};
 // fetch(baseUrl, {
 //   method: "POST",
 //   body: JSON.stringify(data),
