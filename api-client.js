@@ -14,23 +14,26 @@ const loadData = async () => {
 
   // Voeg de data toe aan de DOM
   const toDoList = document.getElementById("todo-list");
-  let output = '';
 
     data.forEach((task) => {
       const deleteImage = document.createElement('img');
-      output += `<div id="task-item">
-                <li>${task.description}</li> 
-                  <img src="bin.png">              
-                </div>`;
-      deleteImage.addEventListener('click', () => {
-        deleteData(task);
-      });
+      const item = document.createElement("li");
+      
+      item.classList.add("task-item");
+      deleteImage.src = 'bin.png';
+      item.innerHTML = task.description;
+      toDoList.appendChild(item); 
+      item.appendChild(deleteImage);
 
+      deleteImage.addEventListener("click", () => {
+          deleteData(task);
+          console.log(`Delete ${task.description}`);
+       });
+      
   });
-  toDoList.innerHTML = output;
+  
 }
 loadData();
-
 
 // POST functie
 const postData = async (toDo) => {
@@ -42,10 +45,9 @@ const postData = async (toDo) => {
   })
 };
 
-
 // DELETE functie
-const deleteData = async () => {
-  const id = task.id
+const deleteData = async (task) => {
+  const id = task._id;
   fetch(baseUrl + id, {
     method: 'DELETE'
   })

@@ -22,18 +22,18 @@ h1 {
   border: 2px #383838;
 }
 
-#task-item {
+#todo-list {
   display: flex;
-  justify-content: left;
-  margin-bottom: 15px;
+  flex-direction: column;
 }
 
 img {
   width: 22px;
   height: 22px;
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
 li {
   font-size: 22px;
+  margin-bottom: 15px;
 }
