@@ -11,29 +11,8 @@ const loadData = async () => {
   });
   const data = await res.json();
   console.log(data);
-
-  // Voeg de data toe aan de DOM
-  const toDoList = document.getElementById("todo-list");
-
-    data.forEach((task) => {
-      const deleteImage = document.createElement('img');
-      const item = document.createElement("li");
-      
-      item.classList.add("task-item");
-      deleteImage.src = 'bin.png';
-      item.innerHTML = task.description;
-      toDoList.appendChild(item); 
-      item.appendChild(deleteImage);
-
-      deleteImage.addEventListener("click", () => {
-          deleteData(task);
-          console.log(`Delete ${task.description}`);
-       });
-      
-  });
-  
-}
-loadData();
+  addToDom(data);
+};
 
 // POST functie
 const postData = async (toDo) => {
