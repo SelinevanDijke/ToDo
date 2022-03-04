@@ -1,8 +1,8 @@
-// Variabelen
+// Var
 const baseUrl = "HTTP://localhost:3000/";
 const myHeaders = {'Content-Type': 'application/json'};
 
-// GET functie
+// GET function
 const loadData = async () => {
   const res = await fetch(baseUrl, {
     method: 'GET',
@@ -12,10 +12,10 @@ const loadData = async () => {
   console.log(data);
   addToDom(data);
 };
-loadData(); // Hierdoor worden de taken al ingeladen 
+loadData(); // Load tasks before refreshing
 
-// POST functie
-const postData = async (toDo) => {
+// POST function
+const postData = async () => {
   const obj = {description: taskText.value, done: false}
   fetch(baseUrl, {
     method: "POST",
@@ -24,10 +24,10 @@ const postData = async (toDo) => {
   })
 };
 
-// DELETE functie
-const deleteData = async (task) => {
-  const id = task._id;
-  fetch(baseUrl + id, {
+// DELETE function
+const deleteData = async (idToDelete) => {
+  fetch(baseUrl + idToDelete, {
     method: 'DELETE'
   })
+  loadData();
 };
