@@ -3,7 +3,6 @@ const taskForm = document.getElementById("add-task");
 const taskText = document.getElementById("add-text");
 const taskButton = document.getElementById("add-button");
 
-
 // Voeg task toe aan POST functie
 taskForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -35,4 +34,3 @@ const addToDom = async (data) => {
     });
 };
 
-    

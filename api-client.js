@@ -1,7 +1,6 @@
 // Variabelen
 const baseUrl = "HTTP://localhost:3000/";
-let myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
+const myHeaders = {'Content-Type': 'application/json'};
 
 // GET functie
 const loadData = async () => {
@@ -13,6 +12,7 @@ const loadData = async () => {
   console.log(data);
   addToDom(data);
 };
+loadData(); // Hierdoor worden de taken al ingeladen 
 
 // POST functie
 const postData = async (toDo) => {
@@ -31,5 +31,3 @@ const deleteData = async (task) => {
     method: 'DELETE'
   })
 };
-
-
