@@ -1,4 +1,4 @@
-// Var
+// Variabelen
 const baseUrl = "HTTP://localhost:3000/";
 const myHeaders = {'Content-Type': 'application/json'};
 
@@ -12,7 +12,7 @@ const loadData = async () => {
   console.log(data);
   addToDom(data);
 };
-loadData(); // Load tasks before refreshing
+loadData(); 
 
 // POST function
 const postData = async () => {
@@ -29,5 +29,4 @@ const deleteData = async (idToDelete) => {
   fetch(baseUrl + idToDelete, {
     method: 'DELETE'
   })
-  loadData();
 };
