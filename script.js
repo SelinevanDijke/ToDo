@@ -2,6 +2,7 @@
 const taskForm = document.getElementById("add-task"); 
 const taskText = document.getElementById("add-text");
 const taskButton = document.getElementById("add-button");
+const toDoList = document.getElementById("todo-list");
 
 // Send task to POST function
 taskForm.addEventListener('submit', async (e) => {
@@ -15,41 +16,33 @@ taskForm.addEventListener('submit', async (e) => {
 
 // Add the data to the DOM
 const addToDom = async (data) => {
+
+    toDoList.innerHTML = '';
+
     data.forEach((task) => {
+        
+        const item = document.createElement("li");
+        item.innerHTML = '';
 
-        if (data.includes(task._id) === task._id) {
-            console.log("Deze taak bestaat al en kan daardoor niet toe worden gevoegd");
-        } else {
-            const item = document.createElement("li");
+        const deleteImage = document.createElement('img');
+        deleteImage.id = task._id;
+                
+        item.classList.add("task-item");
+        deleteImage.src = 'css/bin.png';
+        item.innerHTML = task.description;
+        toDoList.appendChild(item);
+        item.appendChild(deleteImage);
+        
+        deleteImage.addEventListener("click", (event) => {
+
+            const idToDelete = event.target.id;
+            toDoList.removeChild(item);
             item.innerHTML = '';
-
-            const deleteImage = document.createElement('img');
-            const toDoList = document.getElementById("todo-list");
-            deleteImage.id = task._id;
-                    
-            item.classList.add("task-item");
-            deleteImage.src = 'bin.png';
-            item.innerHTML = task.description;
-            toDoList.appendChild(item);
-            item.appendChild(deleteImage);
-            
-            deleteImage.addEventListener("click", (event) => {
-
-                const idToDelete = event.target.id;
-                toDoList.removeChild(item);
-                item.innerHTML = '';
-                console.log(`Delete ${task.description}`);
-                deleteData(idToDelete);
-                loadData();
-            });
-        }
+            console.log(`Verwijder ${task.description}`);
+            deleteData(idToDelete);
+            loadData();
+        });
+    
     });
 }; 
 loadData().then(data => addToDom(data));
-
-
- 
-
-
-    
-
