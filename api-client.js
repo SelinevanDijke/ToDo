@@ -10,9 +10,8 @@ const loadData = async () => {
   });
   const data = await res.json();
   console.log(data);
-  addToDom(data);
+  return data;
 };
-loadData(); 
 
 // POST function
 const postData = async () => {

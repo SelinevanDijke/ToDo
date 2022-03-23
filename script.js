@@ -10,37 +10,43 @@ taskForm.addEventListener('submit', async (e) => {
     const description = taskText.value;
     const toDo = { description }
     const res = await postData();
-    loadData();
+    loadData().then(data => addToDom(data));
 });
 
 // Add the data to the DOM
 const addToDom = async (data) => {
-    const item = document.createElement("li");
-    item.innerHTML = '';
-    
     data.forEach((task) => {
-        const deleteImage = document.createElement('img');
-        const toDoList = document.getElementById("todo-list");
-        deleteImage.id = task._id;
+
+        if (data.includes(task._id) === task._id) {
+            console.log("Deze taak bestaat al en kan daardoor niet toe worden gevoegd");
+        } else {
+            const item = document.createElement("li");
+            item.innerHTML = '';
+
+            const deleteImage = document.createElement('img');
+            const toDoList = document.getElementById("todo-list");
+            deleteImage.id = task._id;
+                    
+            item.classList.add("task-item");
+            deleteImage.src = 'bin.png';
+            item.innerHTML = task.description;
+            toDoList.appendChild(item);
+            item.appendChild(deleteImage);
             
-        item.classList.add("task-item");
-        deleteImage.src = 'bin.png';
-        item.innerHTML = task.description;
-        toDoList.appendChild(item); 
-        item.appendChild(deleteImage);
-    
-        deleteImage.addEventListener("click", (event) => {
+            deleteImage.addEventListener("click", (event) => {
 
                 const idToDelete = event.target.id;
                 toDoList.removeChild(item);
                 item.innerHTML = '';
                 console.log(`Delete ${task.description}`);
                 deleteData(idToDelete);
-                loadData(data);
-        });
-        
+                loadData();
+            });
+        }
     });
 }; 
+loadData().then(data => addToDom(data));
+
 
  
 
